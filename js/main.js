@@ -13,11 +13,13 @@ const $state = $.atom(o.init(1));
 
 reg({$state});
 
-$.swap($state, o.rollEnergyDice());
+$.swap($state, o.rollEnergyDice([2,3,4]));
 
 $.swap($state, o.applyEnergyDieAssignment("attack", 0));   // 2
 $.swap($state, o.applyEnergyDieAssignment("defense", 2));  // 4
 $.swap($state, o.applyEnergyDieAssignment("movement", 1)); // 5
 
-$.swap($state, o.moveAdventurer($state.state.adventurer, 1,4))
+$.swap($state, o.moveAdventurer(0, 3))
+$.swap($state, o.moveAdventurer(0, 2))
+$.swap($state, o.moveAdventurer(4, 4))
 
