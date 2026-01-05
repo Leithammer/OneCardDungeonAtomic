@@ -47,6 +47,8 @@ export function rollEnergyDice(dicePool) {
 
 export function applyEnergyDieAssignment(target, dieIndex) {
   return function (state) {
+    var remainingspeed = state.adventurer.remainingspeed;
+
     // guard: invalid target
     if (!(target in state.energyAssignments)) {
       throw new Error(`Invalid assignment target: ${target}`);
@@ -66,9 +68,16 @@ export function applyEnergyDieAssignment(target, dieIndex) {
     if (state.usedEnergyDiceIndexes.includes(dieIndex)) {
       throw new Error(`Energy die ${dieIndex} already used`);
     }
-
+    if (target==="movement"){
+      console.log("Movement");
+      remainingspeed = state.energyDicePool[dieIndex] + state.adventurer.movement;
+    }
     return {
       ...state,
+      adventurer: {
+        ...state.adventurer,
+        remainingspeed: remainingspeed,
+      },
       energyAssignments: {
         ...state.energyAssignments,
         [target]: state.energyDicePool[dieIndex],
@@ -94,6 +103,7 @@ export function moveAdventurer(x, y) {
         ...state.adventurer,
         x: x,
         y: y,
+        remainingspeed: remainingspeed
       },
     };
   };

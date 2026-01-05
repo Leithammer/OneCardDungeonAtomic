@@ -20,6 +20,4 @@ $.swap($state, o.applyEnergyDieAssignment("defense", 2));  // 4
 $.swap($state, o.applyEnergyDieAssignment("movement", 1)); // 5
 
 $.swap($state, o.moveAdventurer(0, 3))
-$.swap($state, o.moveAdventurer(0, 2))
-$.swap($state, o.moveAdventurer(4, 4))
 
